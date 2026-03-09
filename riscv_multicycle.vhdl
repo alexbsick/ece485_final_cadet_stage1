@@ -319,9 +319,9 @@ begin
     -- Moore Machine, outputs determined by State
     -- MEMORY
     mem_write_chip <= '1' when (state = MEMORY and mem_write = '1') else '0';  -- ensure only write to memory during this state
-    next_pc <= std_logic_vector(signed(NPC) + signed(imm)) when (state = MEMORY and branch = '1') else
+    next_pc <= std_logic_vector(signed(NPC) + signed(imm)) when (state = MEMORY and branch = '1' and alu_result /= x"00000000") else
                std_logic_vector(signed(NPC) + signed(imm)) when (state = MEMORY and jump = '1') else
-               NPC when state = MEMORY and branch = '0' and jump = '0' else
+               NPC when state = MEMORY else
                next_pc;  -- otherwise, keep the same pc until time to update
 
     -------------------------- WB state hardware ---------------------------------------------
@@ -332,7 +332,7 @@ begin
     -- Moore Machine, outputs determined by State
     reg_write_chip <= '1' when (state = WRITEBACK and reg_write = '1') else '0'; -- ensure only write to registers during this state
     if_id_pc   <= next_pc when state = WRITEBACK else if_id_pc; -- only lets this update during WRITEBACK
-    wb_data <= x"10000000" when (state = WRITEBACK and (load_addr = '1' or branch = '1')) else
+    wb_data <= x"10000000" when (state = WRITEBACK and load_addr = '1') else
                mem_wb_data when (state = WRITEBACK and mem_read = '1') else
                mem_wb_alu  when (state = WRITEBACK and (alu_op = "0000" or alu_op = "0001")) else
                wb_data;  -- only allow this to change during Writeback

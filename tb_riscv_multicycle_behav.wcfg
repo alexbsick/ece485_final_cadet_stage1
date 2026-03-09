@@ -10,13 +10,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="3320845922fs"></ZoomEndTime>
-      <Cursor1Time time="800000000fs"></Cursor1Time>
+      <ZoomStartTime time="166.666 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,166.667 ns"></ZoomEndTime>
+      <Cursor1Time time="1,000.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="161"></NameColumnWidth>
-      <ValueColumnWidth column_width="129"></ValueColumnWidth>
+      <NameColumnWidth column_width="194"></NameColumnWidth>
+      <ValueColumnWidth column_width="90"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="33" />
    <wvobject fp_name="/tb_riscv_multicycle/clk" type="logic">
